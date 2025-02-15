@@ -1,0 +1,495 @@
+
+TWI_SLAVE.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  0000031e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002aa  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000002  00800100  00800100  0000031e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000031e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000350  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000b0  00000000  00000000  00000390  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000a76  00000000  00000000  00000440  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000008aa  00000000  00000000  00000eb6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000006e0  00000000  00000000  00001760  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000154  00000000  00000000  00001e40  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000004e5  00000000  00000000  00001f94  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000002f5  00000000  00000000  00002479  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000080  00000000  00000000  0000276e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 ff 00 	jmp	0x1fe	; 0x1fe <__vector_21>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 14 01 	jmp	0x228	; 0x228 <__vector_24>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a2 30       	cpi	r26, 0x02	; 2
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 d5 00 	call	0x1aa	; 0x1aa <main>
+  88:	0c 94 53 01 	jmp	0x2a6	; 0x2a6 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <ADC_init>:
+#include "ADC.h"
+#include <avr/io.h>
+//Configuración del ADC
+
+void ADC_init(void) {
+	ADMUX |= (1<<REFS0);	//Seleccionar el voltaje de referencia
+  90:	ec e7       	ldi	r30, 0x7C	; 124
+  92:	f0 e0       	ldi	r31, 0x00	; 0
+  94:	80 81       	ld	r24, Z
+  96:	80 64       	ori	r24, 0x40	; 64
+  98:	80 83       	st	Z, r24
+	ADMUX &= ~(1<<REFS1);
+  9a:	80 81       	ld	r24, Z
+  9c:	8f 77       	andi	r24, 0x7F	; 127
+  9e:	80 83       	st	Z, r24
+	ADMUX &= ~(1<<ADLAR);	// Se define que se trabajara con 10 bits
+  a0:	80 81       	ld	r24, Z
+  a2:	8f 7d       	andi	r24, 0xDF	; 223
+  a4:	80 83       	st	Z, r24
+	
+	// Configuración Prescaler de 128 --> 16M/128 = 125KHz
+	ADCSRA |= (1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0);
+  a6:	ea e7       	ldi	r30, 0x7A	; 122
+  a8:	f0 e0       	ldi	r31, 0x00	; 0
+  aa:	80 81       	ld	r24, Z
+  ac:	87 60       	ori	r24, 0x07	; 7
+  ae:	80 83       	st	Z, r24
+	ADCSRA |= (1<<ADEN);	// Se enceinde el ADC y se activa su interruptor de igual forma
+  b0:	80 81       	ld	r24, Z
+  b2:	80 68       	ori	r24, 0x80	; 128
+  b4:	80 83       	st	Z, r24
+	
+	//Entradas para los potenciometros
+	DIDR0 |= (1 << ADC0D);		// Desabilitar la entrada digital PC0
+  b6:	ee e7       	ldi	r30, 0x7E	; 126
+  b8:	f0 e0       	ldi	r31, 0x00	; 0
+  ba:	80 81       	ld	r24, Z
+  bc:	81 60       	ori	r24, 0x01	; 1
+  be:	80 83       	st	Z, r24
+  c0:	08 95       	ret
+
+000000c2 <ADC_read>:
+}
+
+uint16_t ADC_read(uint8_t canal){
+	ADMUX = (ADMUX & 0xF0)|canal;			//Seleccionar el canal del ADC
+  c2:	ec e7       	ldi	r30, 0x7C	; 124
+  c4:	f0 e0       	ldi	r31, 0x00	; 0
+  c6:	90 81       	ld	r25, Z
+  c8:	90 7f       	andi	r25, 0xF0	; 240
+  ca:	89 2b       	or	r24, r25
+  cc:	80 83       	st	Z, r24
+	ADCSRA |= (1<<ADSC);					// Se inicia la conversión de lo valores
+  ce:	ea e7       	ldi	r30, 0x7A	; 122
+  d0:	f0 e0       	ldi	r31, 0x00	; 0
+  d2:	80 81       	ld	r24, Z
+  d4:	80 64       	ori	r24, 0x40	; 64
+  d6:	80 83       	st	Z, r24
+	while((ADCSRA)&(1<<ADSC));				//Se espera hasta que la conversión se haya completado
+  d8:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+  dc:	86 fd       	sbrc	r24, 6
+  de:	fc cf       	rjmp	.-8      	; 0xd8 <ADC_read+0x16>
+	return(ADC);							//Regresa el valor de ADC
+  e0:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7f8078>
+  e4:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+}
+  e8:	08 95       	ret
+
+000000ea <I2C_Slave_Init>:
+  ea:	97 b1       	in	r25, 0x07	; 7
+  ec:	9f 7c       	andi	r25, 0xCF	; 207
+  ee:	97 b9       	out	0x07, r25	; 7
+  f0:	88 0f       	add	r24, r24
+  f2:	80 93 ba 00 	sts	0x00BA, r24	; 0x8000ba <__TEXT_REGION_LENGTH__+0x7f80ba>
+  f6:	85 e4       	ldi	r24, 0x45	; 69
+  f8:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+  fc:	08 95       	ret
+
+000000fe <refreshPORT>:
+	DDRB |=(1 << DDB5);
+}
+
+
+void refreshPORT(uint8_t valor){
+	if(valor & 0b10000000){
+  fe:	88 23       	and	r24, r24
+ 100:	24 f4       	brge	.+8      	; 0x10a <refreshPORT+0xc>
+		PORTD |=(1 << PORTD6);
+ 102:	9b b1       	in	r25, 0x0b	; 11
+ 104:	90 64       	ori	r25, 0x40	; 64
+ 106:	9b b9       	out	0x0b, r25	; 11
+ 108:	03 c0       	rjmp	.+6      	; 0x110 <refreshPORT+0x12>
+		}else{
+		PORTD &= ~(1 << PORTD6);
+ 10a:	9b b1       	in	r25, 0x0b	; 11
+ 10c:	9f 7b       	andi	r25, 0xBF	; 191
+ 10e:	9b b9       	out	0x0b, r25	; 11
+	}
+	if(valor & 0b01000000){
+ 110:	86 ff       	sbrs	r24, 6
+ 112:	04 c0       	rjmp	.+8      	; 0x11c <refreshPORT+0x1e>
+		PORTD |=(1 << PORTD5);
+ 114:	9b b1       	in	r25, 0x0b	; 11
+ 116:	90 62       	ori	r25, 0x20	; 32
+ 118:	9b b9       	out	0x0b, r25	; 11
+ 11a:	03 c0       	rjmp	.+6      	; 0x122 <refreshPORT+0x24>
+		}else{
+		PORTD &= ~(1 << PORTD5);
+ 11c:	9b b1       	in	r25, 0x0b	; 11
+ 11e:	9f 7d       	andi	r25, 0xDF	; 223
+ 120:	9b b9       	out	0x0b, r25	; 11
+	}
+	if(valor & 0b00100000){
+ 122:	85 ff       	sbrs	r24, 5
+ 124:	04 c0       	rjmp	.+8      	; 0x12e <refreshPORT+0x30>
+		PORTD |= (1 << PORTD4);
+ 126:	9b b1       	in	r25, 0x0b	; 11
+ 128:	90 61       	ori	r25, 0x10	; 16
+ 12a:	9b b9       	out	0x0b, r25	; 11
+ 12c:	03 c0       	rjmp	.+6      	; 0x134 <refreshPORT+0x36>
+		}else{
+		PORTD &= ~(1 << PORTD4);
+ 12e:	9b b1       	in	r25, 0x0b	; 11
+ 130:	9f 7e       	andi	r25, 0xEF	; 239
+ 132:	9b b9       	out	0x0b, r25	; 11
+	}
+	if(valor & 0b00010000){
+ 134:	84 ff       	sbrs	r24, 4
+ 136:	04 c0       	rjmp	.+8      	; 0x140 <refreshPORT+0x42>
+		PORTD |= (1 << PORTD3);
+ 138:	9b b1       	in	r25, 0x0b	; 11
+ 13a:	98 60       	ori	r25, 0x08	; 8
+ 13c:	9b b9       	out	0x0b, r25	; 11
+ 13e:	03 c0       	rjmp	.+6      	; 0x146 <refreshPORT+0x48>
+		}else{
+		PORTD &= ~(1 << PORTD3);
+ 140:	9b b1       	in	r25, 0x0b	; 11
+ 142:	97 7f       	andi	r25, 0xF7	; 247
+ 144:	9b b9       	out	0x0b, r25	; 11
+	}
+	if(valor & 0b00001000){
+ 146:	83 ff       	sbrs	r24, 3
+ 148:	04 c0       	rjmp	.+8      	; 0x152 <refreshPORT+0x54>
+		PORTD |= (1 << PORTC2);
+ 14a:	9b b1       	in	r25, 0x0b	; 11
+ 14c:	94 60       	ori	r25, 0x04	; 4
+ 14e:	9b b9       	out	0x0b, r25	; 11
+ 150:	03 c0       	rjmp	.+6      	; 0x158 <refreshPORT+0x5a>
+		}else{
+		PORTD &= ~(1 << PORTC2);
+ 152:	9b b1       	in	r25, 0x0b	; 11
+ 154:	9b 7f       	andi	r25, 0xFB	; 251
+ 156:	9b b9       	out	0x0b, r25	; 11
+	}
+	if(valor & 0b00000100){
+ 158:	82 ff       	sbrs	r24, 2
+ 15a:	04 c0       	rjmp	.+8      	; 0x164 <refreshPORT+0x66>
+		PORTC |= (1 << PORTC3);
+ 15c:	98 b1       	in	r25, 0x08	; 8
+ 15e:	98 60       	ori	r25, 0x08	; 8
+ 160:	98 b9       	out	0x08, r25	; 8
+ 162:	03 c0       	rjmp	.+6      	; 0x16a <refreshPORT+0x6c>
+		}else{
+		PORTC &= ~(1 << PORTC3);
+ 164:	98 b1       	in	r25, 0x08	; 8
+ 166:	97 7f       	andi	r25, 0xF7	; 247
+ 168:	98 b9       	out	0x08, r25	; 8
+	}
+	if(valor & 0b00000010){
+ 16a:	81 ff       	sbrs	r24, 1
+ 16c:	04 c0       	rjmp	.+8      	; 0x176 <refreshPORT+0x78>
+		PORTC |= (1 << PORTC2);
+ 16e:	98 b1       	in	r25, 0x08	; 8
+ 170:	94 60       	ori	r25, 0x04	; 4
+ 172:	98 b9       	out	0x08, r25	; 8
+ 174:	03 c0       	rjmp	.+6      	; 0x17c <refreshPORT+0x7e>
+		}else{
+		PORTC &= ~(1 << PORTC2);
+ 176:	98 b1       	in	r25, 0x08	; 8
+ 178:	9b 7f       	andi	r25, 0xFB	; 251
+ 17a:	98 b9       	out	0x08, r25	; 8
+	}
+	if(valor & 0b00000001){
+ 17c:	80 ff       	sbrs	r24, 0
+ 17e:	04 c0       	rjmp	.+8      	; 0x188 <refreshPORT+0x8a>
+		PORTC |= (1 << PORTC1);
+ 180:	88 b1       	in	r24, 0x08	; 8
+ 182:	82 60       	ori	r24, 0x02	; 2
+ 184:	88 b9       	out	0x08, r24	; 8
+ 186:	08 95       	ret
+		}else{
+		PORTC &= ~(1 << PORTC1);
+ 188:	88 b1       	in	r24, 0x08	; 8
+ 18a:	8d 7f       	andi	r24, 0xFD	; 253
+ 18c:	88 b9       	out	0x08, r24	; 8
+ 18e:	08 95       	ret
+
+00000190 <init_setup>:
+//FUNCIONES
+//******************************************************************************************************************
+
+void init_setup(void){
+	// Salidas
+	DDRC |=(1 << DDC1)|(1 << DDC2)|(1 << DDC3);
+ 190:	87 b1       	in	r24, 0x07	; 7
+ 192:	8e 60       	ori	r24, 0x0E	; 14
+ 194:	87 b9       	out	0x07, r24	; 7
+	DDRD |=(1 << DDD2)|(1 << DDD3)|(1 << DDD4)|(1 << DDD5)|(1 << DDD6);
+ 196:	8a b1       	in	r24, 0x0a	; 10
+ 198:	8c 67       	ori	r24, 0x7C	; 124
+ 19a:	8a b9       	out	0x0a, r24	; 10
+	refreshPORT(0);
+ 19c:	80 e0       	ldi	r24, 0x00	; 0
+ 19e:	0e 94 7f 00 	call	0xfe	; 0xfe <refreshPORT>
+	DDRB |=(1 << DDB5);
+ 1a2:	84 b1       	in	r24, 0x04	; 4
+ 1a4:	80 62       	ori	r24, 0x20	; 32
+ 1a6:	84 b9       	out	0x04, r24	; 4
+ 1a8:	08 95       	ret
+
+000001aa <main>:
+//LOOP
+//******************************************************************************************************************
+
+int main(void)
+{
+	DDRB |=(1 << DDB5);
+ 1aa:	84 b1       	in	r24, 0x04	; 4
+ 1ac:	80 62       	ori	r24, 0x20	; 32
+ 1ae:	84 b9       	out	0x04, r24	; 4
+	PORTB &= ~(1 << PORTB5);
+ 1b0:	85 b1       	in	r24, 0x05	; 5
+ 1b2:	8f 7d       	andi	r24, 0xDF	; 223
+ 1b4:	85 b9       	out	0x05, r24	; 5
+	init_setup();
+ 1b6:	0e 94 c8 00 	call	0x190	; 0x190 <init_setup>
+	ADC_init();
+ 1ba:	0e 94 48 00 	call	0x90	; 0x90 <ADC_init>
+
+	I2C_Slave_Init(SlaveAddress);		//Se inicia el esclavo con la dirección del maestro designada
+ 1be:	80 e3       	ldi	r24, 0x30	; 48
+ 1c0:	0e 94 75 00 	call	0xea	; 0xea <I2C_Slave_Init>
+
+	sei();		// Habilitar Interrupciones generales
+ 1c4:	78 94       	sei
+
+ 
+    while (1) 
+    {
+		// Iniciando secuencia de adc
+		valorADC = ADC_read(0);
+ 1c6:	80 e0       	ldi	r24, 0x00	; 0
+ 1c8:	0e 94 61 00 	call	0xc2	; 0xc2 <ADC_read>
+ 1cc:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+		refreshPORT(valorADC);
+ 1d0:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 1d4:	0e 94 7f 00 	call	0xfe	; 0xfe <refreshPORT>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1d8:	2f ef       	ldi	r18, 0xFF	; 255
+ 1da:	81 ee       	ldi	r24, 0xE1	; 225
+ 1dc:	94 e0       	ldi	r25, 0x04	; 4
+ 1de:	21 50       	subi	r18, 0x01	; 1
+ 1e0:	80 40       	sbci	r24, 0x00	; 0
+ 1e2:	90 40       	sbci	r25, 0x00	; 0
+ 1e4:	e1 f7       	brne	.-8      	; 0x1de <main+0x34>
+ 1e6:	00 c0       	rjmp	.+0      	; 0x1e8 <main+0x3e>
+ 1e8:	00 00       	nop
+		_delay_ms(100);
+		if(buffer == 'R'){
+ 1ea:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <buffer>
+ 1ee:	82 35       	cpi	r24, 0x52	; 82
+ 1f0:	51 f7       	brne	.-44     	; 0x1c6 <main+0x1c>
+			PINB |= (1 << PINB5);
+ 1f2:	83 b1       	in	r24, 0x03	; 3
+ 1f4:	80 62       	ori	r24, 0x20	; 32
+ 1f6:	83 b9       	out	0x03, r24	; 3
+			buffer = 0;
+ 1f8:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <buffer>
+ 1fc:	e4 cf       	rjmp	.-56     	; 0x1c6 <main+0x1c>
+
+000001fe <__vector_21>:
+
+//******************************************************************************************************************
+//INTERRUPCIONES
+//******************************************************************************************************************
+
+ISR(ADC_vect){
+ 1fe:	1f 92       	push	r1
+ 200:	0f 92       	push	r0
+ 202:	0f b6       	in	r0, 0x3f	; 63
+ 204:	0f 92       	push	r0
+ 206:	11 24       	eor	r1, r1
+ 208:	8f 93       	push	r24
+ 20a:	ef 93       	push	r30
+ 20c:	ff 93       	push	r31
+	ADCSRA |= (1 << ADIF);	//Limpiar la bandera al encender el ADC
+ 20e:	ea e7       	ldi	r30, 0x7A	; 122
+ 210:	f0 e0       	ldi	r31, 0x00	; 0
+ 212:	80 81       	ld	r24, Z
+ 214:	80 61       	ori	r24, 0x10	; 16
+ 216:	80 83       	st	Z, r24
+}
+ 218:	ff 91       	pop	r31
+ 21a:	ef 91       	pop	r30
+ 21c:	8f 91       	pop	r24
+ 21e:	0f 90       	pop	r0
+ 220:	0f be       	out	0x3f, r0	; 63
+ 222:	0f 90       	pop	r0
+ 224:	1f 90       	pop	r1
+ 226:	18 95       	reti
+
+00000228 <__vector_24>:
+
+
+ISR(TWI_vect){
+ 228:	1f 92       	push	r1
+ 22a:	0f 92       	push	r0
+ 22c:	0f b6       	in	r0, 0x3f	; 63
+ 22e:	0f 92       	push	r0
+ 230:	11 24       	eor	r1, r1
+ 232:	8f 93       	push	r24
+ 234:	ef 93       	push	r30
+ 236:	ff 93       	push	r31
+	uint8_t estado;
+	estado = TWSR & 0xFC;
+ 238:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
+ 23c:	8c 7f       	andi	r24, 0xFC	; 252
+	switch(estado){
+ 23e:	80 38       	cpi	r24, 0x80	; 128
+ 240:	99 f0       	breq	.+38     	; 0x268 <__vector_24+0x40>
+ 242:	28 f4       	brcc	.+10     	; 0x24e <__vector_24+0x26>
+ 244:	80 36       	cpi	r24, 0x60	; 96
+ 246:	51 f0       	breq	.+20     	; 0x25c <__vector_24+0x34>
+ 248:	80 37       	cpi	r24, 0x70	; 112
+ 24a:	41 f0       	breq	.+16     	; 0x25c <__vector_24+0x34>
+ 24c:	1f c0       	rjmp	.+62     	; 0x28c <__vector_24+0x64>
+ 24e:	88 3a       	cpi	r24, 0xA8	; 168
+ 250:	a9 f0       	breq	.+42     	; 0x27c <__vector_24+0x54>
+ 252:	88 3b       	cpi	r24, 0xB8	; 184
+ 254:	99 f0       	breq	.+38     	; 0x27c <__vector_24+0x54>
+ 256:	80 39       	cpi	r24, 0x90	; 144
+ 258:	c9 f4       	brne	.+50     	; 0x28c <__vector_24+0x64>
+ 25a:	06 c0       	rjmp	.+12     	; 0x268 <__vector_24+0x40>
+		case 0x60:
+		case 0x70:
+		TWCR |=(1 << TWINT);
+ 25c:	ec eb       	ldi	r30, 0xBC	; 188
+ 25e:	f0 e0       	ldi	r31, 0x00	; 0
+ 260:	80 81       	ld	r24, Z
+ 262:	80 68       	ori	r24, 0x80	; 128
+ 264:	80 83       	st	Z, r24
+		break;
+ 266:	17 c0       	rjmp	.+46     	; 0x296 <__vector_24+0x6e>
+		case 0x80:
+		case 0x90:
+		buffer = TWDR;
+ 268:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
+ 26c:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <buffer>
+		TWCR |= (1 << TWINT); // Se limpia la bandera
+ 270:	ec eb       	ldi	r30, 0xBC	; 188
+ 272:	f0 e0       	ldi	r31, 0x00	; 0
+ 274:	80 81       	ld	r24, Z
+ 276:	80 68       	ori	r24, 0x80	; 128
+ 278:	80 83       	st	Z, r24
+		break;
+ 27a:	0d c0       	rjmp	.+26     	; 0x296 <__vector_24+0x6e>
+		case 0xA8:
+		case 0xB8:
+		TWDR = valorADC; // Cargar el dato
+ 27c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 280:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
+		TWCR = (1 << TWEN)|(1 << TWIE)|(1 << TWINT)|(1 << TWEA); // Inicia el envio
+ 284:	85 ec       	ldi	r24, 0xC5	; 197
+ 286:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+		break;
+ 28a:	05 c0       	rjmp	.+10     	; 0x296 <__vector_24+0x6e>
+		default: // Se libera el bus de cualquier error
+		TWCR |=(1 << TWINT)|(1 << TWSTO);
+ 28c:	ec eb       	ldi	r30, 0xBC	; 188
+ 28e:	f0 e0       	ldi	r31, 0x00	; 0
+ 290:	80 81       	ld	r24, Z
+ 292:	80 69       	ori	r24, 0x90	; 144
+ 294:	80 83       	st	Z, r24
+		break;
+	}
+}
+ 296:	ff 91       	pop	r31
+ 298:	ef 91       	pop	r30
+ 29a:	8f 91       	pop	r24
+ 29c:	0f 90       	pop	r0
+ 29e:	0f be       	out	0x3f, r0	; 63
+ 2a0:	0f 90       	pop	r0
+ 2a2:	1f 90       	pop	r1
+ 2a4:	18 95       	reti
+
+000002a6 <_exit>:
+ 2a6:	f8 94       	cli
+
+000002a8 <__stop_program>:
+ 2a8:	ff cf       	rjmp	.-2      	; 0x2a8 <__stop_program>
