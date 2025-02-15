@@ -115,8 +115,9 @@ uint8_t I2C_Master_Read(uint8_t *buffer, uint8_t ack){
 //******************************************************************************************************************
 
 void I2C_Slave_Init(uint8_t address){
-	DDRC &= ~((1 << DDC4)|(1 << DDC5));		// Pines de i2c como entradas
-
+	DDRC &= ~((1 << DDC4)|(1 << DDC5));		// Pines de i2c como entradas --> Se debe implementar un Pull-Up con el nodo de 5V
+											//Generlamente se emplea una resistencia de 4.7Kohms
+									
 	TWAR = address << 1; // Se asigna la direccion que tendra
 	//TWAR = (address << 1| 0x01); // Se asigna la direccion que tendra y habilita llamada general
 
